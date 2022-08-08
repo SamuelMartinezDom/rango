@@ -8,7 +8,8 @@ def create_product(request):
     new_product = product.objects.create(
         name = "Esmeralda",
         parentesco = "Hermana",
-        age = 6)
+        age = 6,
+        date_of_birth = "22/22/22")
     context = {
         "new_product": new_product
     }
