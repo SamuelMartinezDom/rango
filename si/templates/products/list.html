@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Tienda Magica
+  {% endblock %}
+ 
+ {% block content %}
+
+  {% for product in products %}
+
+  <div class="card" style="width: 18rem;">
+    <img src= "https://i.pinimg.com/originals/6b/d1/f8/6bd1f8d7cfb9a97235022acf1546bad8.jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{product.name}}</h5>
+      <p class="card-text">Categoria: {{product.category}}</p>
+      <p class="card-text">Precio: {{product.price}}</p>
+      <p class="card-text">Stock: {{product.stock}}</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>
+  
+  {% endfor %}
+
+  {% endblock %}

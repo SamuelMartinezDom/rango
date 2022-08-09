@@ -6,9 +6,9 @@ from django.forms import CharField
 
 class product(models.Model):
     name = models.CharField(max_length=30)
-    parentesco = models.CharField(max_length=30, null=True, blank=True)
-    age = models.IntegerField()
-    date_of_birth = models.CharField(max_length=30, null=True)
+    category = models.CharField(max_length=30, null=True, blank=True)
+    price = models.FloatField()
+    stock = models.IntegerField()
 
 def __str__(self):
     return self.name 

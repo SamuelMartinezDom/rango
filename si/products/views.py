@@ -1,4 +1,5 @@
 from multiprocessing import context
+from unicodedata import category
 from django.shortcuts import render
 from products.models import product
 
@@ -6,16 +7,16 @@ from products.models import product
 
 def create_product(request):
     new_product = product.objects.create(
-        name = "Esmeralda",
-        parentesco = "Hermana",
-        age = 6,
-        date_of_birth = "22/22/22")
+        name = "Dado D20",
+        category = "Dados",
+        price = 350,
+        stock = 10)
     context = {
         "new_product": new_product
     }
-    return render(request, "new_product.html", context=context)
+    return render(request, "products/new_product.html", context=context)
 
 def list(request):
     products = product.objects.all()
     context = {"products": products}
-    return render(request, "list.html", context=context)
+    return render(request, "products/list.html", context=context)

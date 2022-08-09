@@ -1,9 +1,9 @@
-
 from django.contrib import admin
-from django.urls import path
-from products.views import list
+from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("list/", list, name= "list")
+    path("products/", include("products.urls")),
+    path("blog/", include("blog.urls")),
+    path("characters/", include("characters.urls"))
 ]
