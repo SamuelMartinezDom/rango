@@ -5,7 +5,7 @@ from characters.forms import fomrularios_character
 
 def create_character(request):
     if request.method == 'POST':
-     print(request.Post)
+     print(request.POST)
      new_character = character.objects.create(
         name = "Magnus El Maldito",
         description = "si",

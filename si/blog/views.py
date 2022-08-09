@@ -8,7 +8,7 @@ from blog.forms import fomrularios_blog
 
 def create_article(request):
     if request.method == 'POST':
-     print(request.Post)
+     print(request.POST)
      new_article = article.objects.create(
         title = "Guia del barbaro",
         body = "si",

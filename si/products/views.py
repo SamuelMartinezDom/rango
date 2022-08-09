@@ -1,14 +1,16 @@
+from http.client import HTTPResponse
 from multiprocessing import context
 from unicodedata import category
 from django.shortcuts import render
 from products.models import product
 from products.forms import fomrularios_productos
 
+
 # Create your views here.
 
 def create_product(request):
     if request.method == 'POST':
-     print(request.Post)
+     print(request.POST)
      new_product = product.objects.create(
         name = "Dado D20",
         category = "Dados",
@@ -26,3 +28,9 @@ def list(request):
     products = product.objects.all()
     context = {"products": products}
     return render(request, "products/list.html", context=context)
+
+def search_products(request):
+   search = request.GET['search']
+   products = product.objects.filter(name__icontains=search)
+   context={'products':products}
+   return render(request, 'products/search_products.html', context=context)
