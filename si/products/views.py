@@ -1,7 +1,7 @@
 from http.client import HTTPResponse
 from multiprocessing import context
 from unicodedata import category
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from products.models import product
 from products.forms import fomrularios_productos
 
@@ -10,20 +10,22 @@ from products.forms import fomrularios_productos
 
 def create_product(request):
     if request.method == 'POST':
-     print(request.POST)
-     new_product = product.objects.create(
-        name = "Dado D20",
-        category = "Dados",
-        price = 350,
-        stock = 10)
-     context = {
-        "new_product": new_product
-     }
+     form= fomrularios_productos(request.POST)
+
+     if form.is_valid():
+            product.objects.create(
+                name = form.cleaned_data['name'],
+                category = form.cleaned_data['category'],
+                price = form.cleaned_data['price'],
+                stock = form.cleaned_data['stock']
+            )     
+            return redirect(list)
+
     elif request.method == 'GET':
      form = fomrularios_productos
      context = {'form':form}
-     return render(request, "products/new_product.html", context=context)
-
+     return render(request, "products/create_product.html", context=context)
+   
 def list(request):
     products = product.objects.all()
     context = {"products": products}
