@@ -1,6 +1,6 @@
 from multiprocessing import context
 from re import A
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from blog.models import article
 from blog.forms import fomrularios_blog
 
@@ -8,14 +8,16 @@ from blog.forms import fomrularios_blog
 
 def create_article(request):
     if request.method == 'POST':
-     print(request.POST)
-     new_article = article.objects.create(
-        title = "Guia del barbaro",
-        body = "si",
-        author = "El Chascuas")
-     context = {
-        "new_article": new_article
-     }
+     form= fomrularios_blog(request.POST)
+
+     if form.is_valid():
+            article.objects.create(
+                title = form.cleaned_data['title'],
+                body = form.cleaned_data['body'],
+                author = form.cleaned_data['author']
+            )     
+            return redirect(articles)
+
     elif request.method == 'GET':
      form_blog = fomrularios_blog
      context = {'form_blog':form_blog}

@@ -1,20 +1,22 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from characters.models import character
 from characters.forms import fomrularios_character
 # Create your views here.
 
 def create_character(request):
-    if request.method == 'POST':
-     print(request.POST)
-     new_character = character.objects.create(
-        name = "Magnus El Maldito",
-        description = "si",
-        age = 35,
-        clase = "Barbaro",
-        lvl = 10)
-     context = {
-        "new_character": new_character
-     }
+    if request.method == 'POST': 
+     form= fomrularios_character(request.POST)
+
+     if form.is_valid():
+            character.objects.create(
+                name = form.cleaned_data['name'],
+                description = form.cleaned_data['description'],
+                age = form.cleaned_data['age'],
+                clase = form.cleaned_data['clase'],
+                lvl = form.cleaned_data['lvl']
+            )     
+            return redirect(characters)
+     
     elif request.method == 'GET':
      form_character = fomrularios_character
      context = {'form_character':form_character}
