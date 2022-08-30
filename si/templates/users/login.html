@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Accede al gremio
+  {% endblock %}
+ 
+ {% block content %}
+
+<form action="" method="POST">
+{% csrf_token %}
+
+    <table>
+        {{form.as_table}}
+    </table>
+
+    <p><input type="submit" value="Accede"></p>
+
+    </form>
+
+  {% endblock %}
