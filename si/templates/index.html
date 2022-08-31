@@ -1,11 +1,19 @@
 {% extends "base.html" %}
 
 {% block title %}
-    Bienvido
-  {% endblock %}
+
+  Bienvido
+
+{% endblock %}
  
- {% block content %}
+{% block content %}
 
-<h1>Este es el index</h1>
+  <h1>Bienvenido al gremio Adventure</h1>
 
-  {% endblock %}
+  {% if message %}
+
+    <h2>{{message}}</h2>
+
+  {% endif %}
+
+{% endblock %}
