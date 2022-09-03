@@ -8,7 +8,7 @@ from blog.forms import fomrularios_blog
 
 def create_article(request):
     if request.method == 'POST':
-     form= fomrularios_blog(request.POST)
+     form= fomrularios_blog(request.POST, request.FILES)
 
      if form.is_valid():
             article.objects.create(

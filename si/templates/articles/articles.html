@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-    Guias
+    Guias 
   {% endblock %}
  
  {% block content %}
@@ -9,16 +9,26 @@
 
 {% for article in articles %}
 
-<div class="card" style="width: 18rem;">
-    <img src= "https://i.pinimg.com/originals/6b/d1/f8/6bd1f8d7cfb9a97235022acf1546bad8.jpg" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">{{article.title}}</h5>
-      <p class="card-text">{{article.body}}</p>
-      <p class="card-text">Autor:"{{article.author}}"</p>
-      <p class="card-text">creado el {{article.date}}</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+ 
+  <div th:block class="md-2">
+    <div class="col">
+      <div class="card">
+        {% if article.image %}
+        <img src= "{{article.image.url}}" class="card-img-top" alt="...">
+        {% else %}
+        <img src= "https://i.pinimg.com/originals/6b/d1/f8/6bd1f8d7cfb9a97235022acf1546bad8.jpg" class="card-img-top" alt="...">
+        {% endif %}
+        <div class="card-body">
+          <h5 class="card-title">{{article.title}}</h5>
+          <p class="card-text">{{article.body}}</p>
+          <p class="card-text">Autor:"{{article.author}}"</p>
+          <p class="card-text">creado el {{article.date}}</p>
+          <center><a href="#" class="btn btn-primary">Link</a></center>
+        </div>
+      </div>
     </div>
-  </div>
+
+
   
   {% endfor %}
 

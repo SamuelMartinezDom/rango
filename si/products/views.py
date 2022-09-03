@@ -10,12 +10,13 @@ from products.forms import fomrularios_productos
 
 def create_product(request):
     if request.method == 'POST':
-     form= fomrularios_productos(request.POST)
+     form= fomrularios_productos(request.POST, request.FILES)
 
      if form.is_valid():
             product.objects.create(
                 name = form.cleaned_data['name'],
                 category = form.cleaned_data['category'],
+                description = form.cleaned_data['description'],
                 price = form.cleaned_data['price'],
                 stock = form.cleaned_data['stock']
             )     

@@ -6,3 +6,4 @@ class fomrularios_character(forms.Form):
     age = forms.IntegerField()
     clase = forms.CharField(max_length=13)
     lvl = forms.IntegerField()
+    image = forms.ImageField(required=False)
