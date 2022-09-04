@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from characters.models import character
 from characters.forms import fomrularios_character
-# Create your views here.
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def create_character(request):
     if request.method == 'POST': 
      form= fomrularios_character(request.POST)
@@ -22,6 +23,7 @@ def create_character(request):
      context = {'form_character':form_character}
     return render(request, "characters/new_character.html", context=context)
 
+@login_required
 def characters(request):
     characters= character.objects.all()
     context = {"characters": characters}
