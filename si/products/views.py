@@ -9,23 +9,29 @@ from django.contrib.auth.decorators import login_required
 
 
 def create_product(request):
+#<<<<<<< HEAD
     if request.user.is_authenticated and request.user.is_superuser:
         if request.method == 'POST':
             form= fomrularios_productos(request.POST)
+#=======
+    if request.method == 'POST':
+     form= fomrularios_productos(request.POST, request.FILES)
+#>>>>>>> 508f93e2263bdf028e8cbe66a9b9a56eeae4b6fa
 
-            if form.is_valid():
-                product.objects.create(
-                name = form.cleaned_data['name'],
-                category = form.cleaned_data['category'],
-                price = form.cleaned_data['price'],
-                stock = form.cleaned_data['stock']
-                )     
-                return redirect(list)
+    if form.is_valid():
+        product.objects.create(
+        name = form.cleaned_data['name'],
+        category = form.cleaned_data['category'],
+        description = form.cleaned_data['description'],
+        price = form.cleaned_data['price'],
+        stock = form.cleaned_data['stock']
+        )     
+        return redirect(list)
 
-        elif request.method == 'GET':
-            form = fomrularios_productos
-            context = {'form':form}
-            return render(request, "products/create_product.html", context=context)
+    elif request.method == 'GET':
+        form = fomrularios_productos
+        context = {'form':form}
+        return render(request, "products/create_product.html", context=context)
     return redirect("login")
 
 @login_required

@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 @login_required
 def create_character(request):
     if request.method == 'POST': 
-     form= fomrularios_character(request.POST)
+     form= fomrularios_character(request.POST, request.FILES)
 
      if form.is_valid():
             character.objects.create(

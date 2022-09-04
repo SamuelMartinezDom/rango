@@ -7,8 +7,49 @@
 {% endblock %}
  
 {% block content %}
+ 
+  <div class="card text-bg-dark">
+    <img src= "https://cdna.artstation.com/p/assets/images/images/024/699/158/large/felix-ortiz-petrik-the-wise-in-search-of-adventure-1-b.jpg?1583251697" class="card-img-top" alt="...">
+    <div class="card-img-overlay">
+      
+      <center> <h5 class="card-title">Bienvenido al gremio Adventure</h5> </center>
+        <style>
+               
+         h5 {
+          font-size: 3.5rem;
+          text-transform: capitalize;
+          font-family: Helvetica, Georgia, monospace;
+          position: relative;
+          bottom: -200px;
+          text-shadow: 0.5px  0px 0px rgb(231, 207, 207),
+               0px  0.5px 0px rgb(231, 207, 207),
+              -0.5px  0px 0px rgb(231, 207, 207),
+               0px -0.5px 0px rgb(231, 207, 207)
+         }
 
-  <h1>Bienvenido al gremio Adventure</h1>
+         h5 + p {
+          font-weight: bold;
+         }
+
+         p {
+          font-size: 2.0rem;
+          color: rgb(24, 18, 18);
+          font-family: Helvetica, Arial, sans-serif;
+          position: relative;
+          bottom: -400px;
+          text-shadow: 0.5px  0px 0px rgb(231, 207, 207),
+               0px  0.5px 0px rgb(231, 207, 207),
+              -0.5px  0px 0px rgb(231, 207, 207),
+               0px -0.5px 0px rgb(231, 207, 207)
+         }
+
+        </style>
+      
+      <p class="card-text">En esta página encontraras una gran gama de productos, noticias, personajes y más, que te harán recorrer la gran era...</p>
+      <p class="card-text"></p>
+    </div>
+  </div>
+
 
   {% if message %}
 
