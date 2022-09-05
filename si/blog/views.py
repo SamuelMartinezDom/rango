@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+@login_required
 def create_article(request):
     if request.user.is_authenticated and request.user.is_superuser:
         if request.method == 'POST':
@@ -34,4 +35,5 @@ def articles(request):
     articles= article.objects.all()
     context = {"articles": articles}
     return render(request, "articles/articles.html", context=context)
+
 

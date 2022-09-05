@@ -7,7 +7,7 @@ from products.forms import fomrularios_productos
 from django.contrib.auth.decorators import login_required
 
 
-
+@login_required
 def create_product(request):
 #<<<<<<< HEAD
     if request.user.is_authenticated and request.user.is_superuser:
@@ -34,7 +34,6 @@ def create_product(request):
         return render(request, "products/create_product.html", context=context)
     return redirect("login")
 
-@login_required
 def list(request):
     products = product.objects.all()
     context = {"products": products}
@@ -46,3 +45,4 @@ def search_products(request):
    products = product.objects.filter(name__icontains=search)
    context={'products':products}
    return render(request, 'products/search_products.html', context=context)
+
