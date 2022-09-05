@@ -3,7 +3,7 @@ from multiprocessing import context
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
-from users.forms import User_registration_form
+from users.forms import UserRegistrationForm
 
 def login_request(request):
     if request.method == "POST":
@@ -26,16 +26,16 @@ def login_request(request):
 
 def register(request):
     if request.method == "POST":
-        form = User_registration_form(request.POST)
+        form = UserRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect("login")
         else:
             context = {"errors": form.errors}
-            form = User_registration_form
+            form = UserRegistrationForm
             context["form"] = form
             return render(request, "users/register.html", context)
     elif request.method == "GET":
-        form = User_registration_form()
+        form = UserRegistrationForm()
         return render(request, "users/register.html", {"form": form})
 
