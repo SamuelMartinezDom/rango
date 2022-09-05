@@ -36,4 +36,34 @@ def articles(request):
     context = {"articles": articles}
     return render(request, "articles/articles.html", context=context)
 
+def delete_article(request, pk):
+    if request.method == 'GET':
+        articles = article.objects.get(pk=pk)
+        context = {'articles':articles}
+        return render(request, 'articles/delete_article.html',context=context)
+    elif request.method == 'POST':
+        articles = article.objects.get(pk=pk)
+        article.delete()
+        return redirect(articles)
 
+def update_article(request, pk):
+    if request.method == 'POST':
+        form = fomrularios_blog(request.POST)
+        if form.is_valid():
+            articles = article.objects.get(id=pk)
+            article.title = form.cleaned_data['title'],
+            article.body = form.cleaned_data['body'],
+            article.author = form.cleaned_data['author']
+            article.save()
+            return redirect(articles)
+
+
+    elif request.method == 'GET':
+        articles = article.objects.get(id=pk)
+
+        form = fomrularios_blog(initial={
+                                        'title':article.title,
+                                        'body':article.body,
+                                        'author':article.author})
+        context = {'form':form}
+        return render(request, 'articles/update_article.html', context=context)
