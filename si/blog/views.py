@@ -8,8 +8,9 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def create_article(request):
-    if request.method == 'POST':
-     form= fomrularios_blog(request.POST, request.FILES)
+    if request.user.is_authenticated and request.user.is_superuser:
+        if request.method == 'POST':
+            form= fomrularios_blog(request.POST)
 
     if request.method == 'POST':
      form= fomrularios_blog(request.POST, request.FILES)
