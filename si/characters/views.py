@@ -54,7 +54,7 @@ def update_character(request, pk):
     ademas requiere estar logueado y ser admin para acceder, sino te manda al registro"""
     if request.user.is_authenticated and request.user.is_superuser:
         if request.method == 'POST':
-            form = FormularioCharacters(request.POST)
+            form = FormularioCharacters(request.POST, request.FILES)
             if form.is_valid():
                 character = Character.objects.get(id=pk)
                 character.name = form.cleaned_data['name']

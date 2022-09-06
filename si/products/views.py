@@ -48,11 +48,11 @@ def delete_product(request, pk):
     ademas requiere estar logueado y ser admin para acceder, sino te manda al registro"""
     if request.user.is_authenticated and request.user.is_superuser:
         if request.method == 'GET':
-            products = Product.objects.get(pk=pk)
+            products = Product.objects.get(id=pk)
             context = {'products':products}
             return render(request, 'products/delete_product.html',context=context)
         elif request.method == 'POST':
-            products = Product.objects.get(pk=pk)
+            products = Product.objects.get(id=pk)
             products.delete(products)
             return redirect(list)
 
