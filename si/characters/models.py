@@ -3,7 +3,8 @@ from django.db import models
 
 class Character(models.Model):
 
-    
+
+    """Modelo basico de personajes para rol"""
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=1000)
     alineamiento = models.CharField(max_length=50, null=True, blank=True)

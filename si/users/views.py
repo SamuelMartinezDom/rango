@@ -3,6 +3,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate
 from users.forms import UserRegistrationForm
 
+
 def login_request(request):
     if request.method == "POST":
         form = AuthenticationForm(request=request, data=request.POST)
@@ -21,6 +22,7 @@ def login_request(request):
     elif request.method == "GET":
         form = AuthenticationForm()
     return render(request, "users/login.html", {"form": form})
+
 
 def register(request):
     if request.method == "POST":

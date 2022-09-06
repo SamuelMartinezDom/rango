@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Borrar Aventurero
+{% endblock %}
+ 
+{% block content %}
+ 
+ <p> Nombre: {{character.name}}</p>
+ <p> Descripción: {{character.description}}</p>
+ <p> Clase: {{character.clase}}</p>
+ <p> Alineamiento: {{character.alineamiento}}</p>
+ <p> Edad: {{character.age}}</p>
+ <p> Nivel: {{character.lvl}}</p>
+ 
+ <form action="" method="POST">
+    {% csrf_token %}
+       <p><input type="submit" value="Eliminar"></p>
+ </form>
+ 
+ 
+{% endblock %}

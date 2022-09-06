@@ -5,6 +5,7 @@ from django.db import models
 class Product(models.Model):
 
 
+    """Modelo de producto para uso general"""
     name = models.CharField(max_length=100)
     category = models.CharField(max_length=30, null=True, blank=True)
     description = models.CharField(max_length=600, null=True, blank=True)

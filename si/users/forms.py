@@ -5,7 +5,8 @@ from django import forms
 
 class UserRegistrationForm(UserCreationForm):
 
-    
+
+    """"""
     username = forms.CharField(label = "Nombre")
     email = forms.EmailField(required=True)
     password1 = forms.CharField(label = "Contraseña", widget = forms.PasswordInput)
