@@ -1,40 +1,69 @@
+from multiprocessing import context
 from re import A
 from django.shortcuts import render, redirect
-from blog.models import Article
-from blog.forms import FormulariosBlog
+from blog.models import article
+from blog.forms import fomrularios_blog
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+@login_required
 def create_article(request):
-    """Esta vista retorna el articulo creado, 
-    ademas requiere estar logueado y ser admin para acceder, de lo contrario te envia al registro."""
     if request.user.is_authenticated and request.user.is_superuser:
         if request.method == 'POST':
-            form= FormulariosBlog(request.POST)
+            form= fomrularios_blog(request.POST)
 
     if request.method == 'POST':
-     form= FormulariosBlog(request.POST, request.FILES)
+     form= fomrularios_blog(request.POST, request.FILES)
 
 
     if form.is_valid():
-                Article.objects.create(
+                article.objects.create(
                 title = form.cleaned_data['title'],
                 body = form.cleaned_data['body'],
                 author = form.cleaned_data['author']
                 )     
                 return redirect(articles)
-
+    
     elif request.method == 'GET':
-            form_blog = FormulariosBlog
+            form_blog = fomrularios_blog
             context = {'form_blog':form_blog}
             return render(request, "articles/new_article.html", context=context)
     return redirect("login")
 
-@login_required
 def articles(request):
-    """Esta vista retorna todos los articulos de la base de datos y los muestra, 
-    ademas requiere estar logueado, sino te manda al registro"""
-    articles= Article.objects.all()
+    articles= article.objects.all()
     context = {"articles": articles}
     return render(request, "articles/articles.html", context=context)
+
+def delete_article(request, pk):
+    if request.method == 'GET':
+        articles = article.objects.get(pk=pk)
+        context = {'articles':articles}
+        return render(request, 'articles/delete_article.html',context=context)
+    elif request.method == 'POST':
+        articles = article.objects.get(pk=pk)
+        article.delete()
+        return redirect(articles)
+
+def update_article(request, pk):
+    if request.method == 'POST':
+        form = fomrularios_blog(request.POST)
+        if form.is_valid():
+            articles = article.objects.get(id=pk)
+            article.title = form.cleaned_data['title'],
+            article.body = form.cleaned_data['body'],
+            article.author = form.cleaned_data['author']
+            article.save()
+            return redirect(articles)
+
+
+    elif request.method == 'GET':
+        articles = article.objects.get(id=pk)
+
+        form = fomrularios_blog(initial={
+                                        'title':article.title,
+                                        'body':article.body,
+                                        'author':article.author})
+        context = {'form':form}
+        return render(request, 'articles/update_article.html', context=context)

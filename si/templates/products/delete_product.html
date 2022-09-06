@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Borrar Producto
+{% endblock %}
+ 
+{% block content %}
+ 
+ <p> Nombre del producto: {{product.name}}</p>
+ <p> Categoria: {{product.category}}</p>
+ <p> Descripción del producto: {{product.description}}</p>
+ <p> Precio: {{product.price}}</p>
+ <p> Stock: {{product.stock}}</p>
+ 
+ <form action="" method="POST">
+    {% csrf_token %}
+       <p><input type="submit" value="Eliminar"></p>
+ </form>
+ 
+ 
+{% endblock %}
