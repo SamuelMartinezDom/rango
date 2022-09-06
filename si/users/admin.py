@@ -1,8 +1,7 @@
 from django.contrib import admin
-from users.models import user_profile
+from users.models import UserProfile
 
-# Register your models here.
 
-@admin.register(user_profile)
+@admin.register(UserProfile)
 class user_profile_admin(admin.ModelAdmin):
     list_display = ["user", "favorite_class", "image"]
