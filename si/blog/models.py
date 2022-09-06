@@ -2,7 +2,7 @@ from django.db import models
 
 #··$%$·"!%& Create your models here.
 
-class article(models.Model):
+class Article(models.Model):
     title = models.CharField(max_length=200)
     body = models.CharField(max_length=3200)
     date = models.DateField(auto_now_add=True, null=True)#, blank= True)
