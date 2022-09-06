@@ -2,7 +2,7 @@ from multiprocessing import context
 from re import A
 from django.shortcuts import render, redirect
 from blog.models import article
-from blog.forms import fomrularios_blog
+from blog.forms import FormulariosBlog
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -11,10 +11,10 @@ from django.contrib.auth.decorators import login_required
 def create_article(request):
     if request.user.is_authenticated and request.user.is_superuser:
         if request.method == 'POST':
-            form= fomrularios_blog(request.POST)
+            form= FormulariosBlog(request.POST)
 
     if request.method == 'POST':
-     form= fomrularios_blog(request.POST, request.FILES)
+     form= FormulariosBlog(request.POST, request.FILES)
 
 
     if form.is_valid():
@@ -26,7 +26,7 @@ def create_article(request):
                 return redirect(articles)
     
     elif request.method == 'GET':
-            form_blog = fomrularios_blog
+            form_blog = FormulariosBlog
             context = {'form_blog':form_blog}
             return render(request, "articles/new_article.html", context=context)
     return redirect("login")
@@ -48,7 +48,7 @@ def delete_article(request, pk):
 
 def update_article(request, pk):
     if request.method == 'POST':
-        form = fomrularios_blog(request.POST)
+        form = FormulariosBlog(request.POST)
         if form.is_valid():
             articles = article.objects.get(id=pk)
             article.title = form.cleaned_data['title'],
@@ -61,7 +61,7 @@ def update_article(request, pk):
     elif request.method == 'GET':
         articles = article.objects.get(id=pk)
 
-        form = fomrularios_blog(initial={
+        form = FormulariosBlog(initial={
                                         'title':article.title,
                                         'body':article.body,
                                         'author':article.author})
