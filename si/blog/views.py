@@ -2,7 +2,7 @@ from multiprocessing import context
 from re import A
 from django.shortcuts import render, redirect
 from blog.models import Article
-from blog.forms import fomrularios_blog
+from blog.forms import FormulariosBlog
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
