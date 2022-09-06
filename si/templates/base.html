@@ -26,29 +26,40 @@
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
           <a class="nav-link" href="/products/list/">Tienda Magica <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="/characters/characters/">Taverna del Gremio<span class="sr-only">(current)</span></a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+            Taverna del Gremio
+          </a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item active" href="/characters/characters/">Lista de mercenarios</a>
+            <a class="dropdown-item active" href="/characters/create_character/">Nuevo aventurero</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
-            Los Archivos
+            La Biblioteca
           </a>
           <div class="dropdown-menu">
             <a class="dropdown-item active" href="/blog/articles/">Guias</a>
             <a class="dropdown-item active" href="#">Clases</a>
+            <a class="dropdown-item active" href="#">Objetos</a>
+            <a class="dropdown-item active" href="#">Armamento</a>
+            <a class="dropdown-item active" href="#">Hechizos</a>
+            <a class="dropdown-item active" href="#">Bestiario</a>
             <a class="dropdown-item active" href="#">Campañas</a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="/admin/" style="margin-right: 24rem ;">The Stick of = True  <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/admin/" style="margin-right: 2rem ;">The Stick of = True  <span class="sr-only">(current)</span></a>
         </li>
         {% if request.user.is_authenticated %}
         <li class="nav-item active">
-          <a class="nav-link" href="/users/logout/" style="margin-left: 5rem ;">Salida <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/users/logout/">Salida <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Identificacion <span class="sr-only">(current)</span></a>
         </li>
         {% else %}
         <li class="nav-item active">
-          <a class="nav-link" href="/users/register/">Registro <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/users/register/" style="margin-left: 2rem ;">Registro <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item active">
           <a class="nav-link" href="/users/login/">Acceso <span class="sr-only">(current)</span></a>

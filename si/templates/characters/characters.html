@@ -9,7 +9,7 @@
 
   {% for character in characters %}
 
-  <div class="card" style="width: 18rem;">
+  <div class="card" style="width: 25rem;">
     {% if character.image %}
     <img src= "{{character.image.url}}" class="card-img-top" alt="...">
     {% else %}
@@ -21,8 +21,11 @@
       <p class="card-text">Clase: {{character.clase}}</p>
       <p class="card-text">Nivel: {{character.lvl}}</p>
       <p class="card-text">Edad: {{character.age}}</p>
-      <p class="card-text">Edad: {{character.description}}</p>
+      <p class="card-text">Alineamiento: {{character.alineamiento}}</p>
+      <p class="card-text">Descripcion: {{character.description}}</p>
       <center> <a href="#" class="btn btn-primary">Elegir</a> </center>
+      <a href="/characters/delete_character/{{character.id}}" class="btn btn-danger">Eliminar</a>
+      <a href="/characters/update_character/{{character.id}}" class="btn btn-primary">Editar</a>
     </div>
   </div>
   

@@ -1,6 +1,6 @@
 from django.contrib import admin
-from characters.models import character
+from characters.models import Character
 
 # Register your models here.
 
-admin.site.register(character)
+admin.site.register(Character)

@@ -1,11 +1,12 @@
-from contextlib import redirect_stderr
-from multiprocessing import context
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login, logout, authenticate
-from users.forms import User_registration_form
+from django.contrib.auth import login, authenticate
+from users.forms import UserRegistrationForm
 
 def login_request(request):
+    """Esta vista retorna el inicio sesion mediante un formulario, 
+    requiere que ingrese un usuario valido que haya sido registrado anteriormente, 
+    ademas de que no requiere estar logueado ni ser admin para acceder."""
     if request.method == "POST":
         form = AuthenticationForm(request=request, data=request.POST)
         if form.is_valid():
@@ -25,17 +26,18 @@ def login_request(request):
     return render(request, "users/login.html", {"form": form})
 
 def register(request):
+    """Esta vista retorna el usuario creado por medio un formulario, 
+    esta vista no requiere estar logueado ni ser admin para acceder"""
     if request.method == "POST":
-        form = User_registration_form(request.POST)
+        form = UserRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect("login")
         else:
             context = {"errors": form.errors}
-            form = User_registration_form
+            form = UserRegistrationForm
             context["form"] = form
             return render(request, "users/register.html", context)
     elif request.method == "GET":
-        form = User_registration_form()
+        form = UserRegistrationForm()
         return render(request, "users/register.html", {"form": form})
-
