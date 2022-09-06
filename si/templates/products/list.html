@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-    Tienda Magica
+    Productos Tienda Magica
 {% endblock %}
  
 {% block content %}
@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <div class="card" style="width: 25rem;">
+  <div class="card" style="width: 18rem;">
     <style> 
       .grid-container {
          display: grid;
@@ -46,7 +46,7 @@
     {% endif %}
 
     <div class="card-body">  
-      <h5 class="card-title">{{product.name}}</h5>
+      <h5 class="card-title">Nombre del producto: {{product.name}}</h5>
       <p class="card-text">Categoria: {{product.category}}</p>
       <p class="card-text">Descripción del producto: {{product.description}}</p>
       <p class="card-text">Precio: {{product.price}}</p>

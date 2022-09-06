@@ -10,7 +10,9 @@
 {% for article in articles %}
 
  
-      <div class="card" style="width: 40rem;">
+  <div th:block class="md-2">
+    <div class="col">
+      <div class="card">
         {% if article.image %}
         <img src= "{{article.image.url}}" class="card-img-top" alt="...">
         {% else %}
