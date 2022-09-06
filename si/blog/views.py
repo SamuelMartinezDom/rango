@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from blog.models import Article
 from blog.forms import FormularioBlog
 from django.contrib.auth.decorators import login_required
+from django.views.generic import DeleteView
 
 
 @login_required
@@ -37,19 +38,12 @@ def articles(request):
     return render(request, "articles/articles.html", context=context)
 
 
-@login_required
-def delete_article(request, pk):
-    """Esta vista retorna un delete del personaje que seleccionaste, 
-    ademas requiere estar logueado y ser admin para acceder, sino te manda al registro"""
-    if request.user.is_authenticated and request.user.is_superuser:
-        if request.method == 'GET':
-            article = Article.objects.get(pk=pk)
-            context = {'article':article}
-            return render(request, 'articles/delete_article.html',context=context)
-        elif request.method == 'POST':
-            article = Article.objects.get(pk=pk)
-            Article.delete(article)
-            return redirect(articles)
+class DeleteArticle(DeleteView):
+
+
+    model= Article
+    template_name = "articles/delete_articles.html"
+    success_url = "/blog/articles/"
 
 
 @login_required

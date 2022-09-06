@@ -5,11 +5,12 @@
 {% endblock %}
  
 {% block content %}
- 
-<p>Titulo del Articulo{{article.title}}</p>
-<p>{{article.body}}</p>
-<p> Autor:"{{article.author}}"</p>
-<p> Creado el {{article.date}}</p>
+
+<p> {{object.image}}</p>
+<p> Titulo del Articulo{{object.title}}</p>
+<p> Autor:"{{object.author}}"</p>
+<p> Creado el {{object.date}}</p>
+ <h5>¿Desea eliminarlo?</h5>
  
  <form action="" method="POST">
     {% csrf_token %}
