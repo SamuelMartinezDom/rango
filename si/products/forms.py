@@ -1,7 +1,6 @@
 from django import forms
 
-class FormulariosProduct(forms.Form):
-    """Modelo de formulario para la creacion de productos."""
+class fomrularios_productos(forms.Form):
     name = forms.CharField(max_length=30)
     category = forms.CharField(max_length=30)
     description = forms.CharField(max_length=100)
