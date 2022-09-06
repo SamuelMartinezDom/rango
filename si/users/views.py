@@ -1,10 +1,7 @@
-from contextlib import redirect_stderr
-from multiprocessing import context
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth import login, authenticate
 from users.forms import UserRegistrationForm
-from users.models import UserProfile
 
 def login_request(request):
     """Esta vista retorna el inicio sesion mediante un formulario, 

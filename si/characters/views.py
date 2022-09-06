@@ -44,7 +44,7 @@ def delete_character(request, pk):
             return render(request, 'characters/delete_character.html',context=context)
         elif request.method == 'POST':
             character = Character.objects.get(pk=pk)
-            Character.delete()
+            Character.delete(character)
             return redirect(characters)
 
 def update_character(request, pk):
@@ -55,13 +55,13 @@ def update_character(request, pk):
             form = FomrulariosCharacter(request.POST)
             if form.is_valid():
                 character = Character.objects.get(id=pk)
-                Character.name = form.cleaned_data['name'],
-                Character.description = form.cleaned_data['description'],
-                Character.alineamiento = form.cleaned_data['alineamiento'],
-                Character.age = form.cleaned_data['age'],
-                Character.clase = form.cleaned_data['clase']
-                Character.lvl = form.cleaned_data['lvl']
-                Character.save()
+                character.name = form.cleaned_data['name']
+                character.description = form.cleaned_data['description']
+                character.alineamiento = form.cleaned_data['alineamiento']
+                character.age = form.cleaned_data['age']
+                character.clase = form.cleaned_data['clase']
+                character.lvl = form.cleaned_data['lvl']
+                character.save()
                 return redirect(characters)
 
 
@@ -69,11 +69,11 @@ def update_character(request, pk):
             character = Character.objects.get(id=pk)
 
             form = FomrulariosCharacter(initial={
-                                        'name':Character.name,
-                                        'description':Character.description,
-                                        'alineamiento':Character.alineamiento, 
-                                        'clase':Character.clase,
-                                        'age':Character.age,
-                                        'lvl':Character.lvl})
+                                        'name':character.name,
+                                        'description':character.description,
+                                        'alineamiento':character.alineamiento, 
+                                        'clase':character.clase,
+                                        'age':character.age,
+                                        'lvl':character.lvl})
             context = {'form':form}
             return render(request, 'characters/update_character.html', context=context)

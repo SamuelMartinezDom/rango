@@ -1,4 +1,4 @@
-from django.urls import path, include
+from django.urls import path
 from characters.views import create_character, characters, update_character, delete_character
 
 urlpatterns = [

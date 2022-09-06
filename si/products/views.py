@@ -1,6 +1,3 @@
-from http.client import HTTPResponse
-from multiprocessing import context
-from unicodedata import category
 from django.shortcuts import render, redirect
 from products.models import Product
 from products.forms import FormulariosProduct
