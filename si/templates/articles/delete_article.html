@@ -12,7 +12,7 @@
 <p> Creado el {{object.date}}</p>
  <h5>¿Desea eliminarlo?</h5>
  
- <form action="" method="POST">
+ <form action={% url 'delete_article' object.id %} method="post">
     {% csrf_token %}
        <p><input type="submit" value="Eliminar"></p>
  </form>

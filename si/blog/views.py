@@ -42,8 +42,8 @@ class DeleteArticle(DeleteView):
 
 
     model= Article
-    template_name = "articles/delete_articles.html"
-    success_url = "/blog/articles/"
+    template_name = "articles/delete_article.html"
+    success_url = "/blog/articles"
 
 
 @login_required
