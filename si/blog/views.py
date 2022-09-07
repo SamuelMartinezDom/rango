@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from blog.models import Article
 from blog.forms import FormularioBlog
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.views.generic import DetailView
 
 
 @user_passes_test(lambda u: u.is_superuser)
@@ -74,3 +75,8 @@ def update_article(request, id):
                                     'author':article.author})
         context = {'form':form}
         return render(request, 'articles/update_article.html', context=context)
+
+
+class Detail_article(DetailView):
+    model = Article
+    template_name = 'articles/detail_articles.html'

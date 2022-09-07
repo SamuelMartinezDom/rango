@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from characters.models import Character
 from characters.forms import FormularioCharacters
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.views.generic import DetailView
 
 
 @user_passes_test(lambda u: u.is_superuser)
@@ -82,3 +83,8 @@ def update_character(request, id):
                                     'lvl':character.lvl})
         context = {'form':form}
         return render(request, 'characters/update_character.html', context=context)
+
+
+class Detail_article(DetailView):
+    model = Character
+    template_name = 'characters/detail_character.html'
