@@ -10,6 +10,7 @@ def create_character(request):
     if request.user.is_authenticated and request.user.is_superuser:
         if request.method == 'POST': 
             form= FormularioCharacters(request.POST, request.FILES)
+
             if form.is_valid():
                 Character.objects.create(
                     name = form.cleaned_data['name'],
@@ -23,7 +24,7 @@ def create_character(request):
         elif request.method == 'GET':
             form_character = FormularioCharacters
             context = {'form_character':form_character}
-        return render(request, "characters/new_character.html", context=context)
+            return render(request, "characters/create_character.html", context=context)
 
 
 @login_required

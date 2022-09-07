@@ -11,13 +11,13 @@ def create_product(request):
         if request.method == 'POST':
             form= FormularioProducts(request.POST, request.FILES)
 
-        if form.is_valid():
+            if form.is_valid():
                 Product.objects.create(
-                name = form.cleaned_data['name'],
-                category = form.cleaned_data['category'],
-                description = form.cleaned_data['description'],
-                price = form.cleaned_data['price'],
-                stock = form.cleaned_data['stock'])     
+                    name = form.cleaned_data['name'],
+                    category = form.cleaned_data['category'],
+                    description = form.cleaned_data['description'],
+                    price = form.cleaned_data['price'],
+                    stock = form.cleaned_data['stock'])     
                 return redirect(list)
 
         elif request.method == 'GET':

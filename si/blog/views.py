@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic import DeleteView
 
 
-@login_required
+
 def create_article(request):
     """Esta vista retorna el articulo creado, 
     ademas requiere estar logueado y ser admin para acceder, de lo contrario te envia al registro."""
@@ -14,19 +14,17 @@ def create_article(request):
         if request.method == 'POST':
             form= FormularioBlog(request.POST, request.FILES)
 
-
             if form.is_valid():
                 Article.objects.create(
-                title = form.cleaned_data['title'],
-                body = form.cleaned_data['body'],
-                author = form.cleaned_data['author'])     
+                    title = form.cleaned_data['title'],
+                    body = form.cleaned_data['body'],
+                    author = form.cleaned_data['author'])     
                 return redirect(articles)
     
         elif request.method == 'GET':
             form = FormularioBlog
             context = {'form':form}
             return render(request, "articles/create_article.html", context=context)
-        return redirect("login")
 
 
 @login_required
