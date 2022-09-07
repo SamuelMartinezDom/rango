@@ -5,13 +5,15 @@
 {% endblock %}
  
 {% block content %}
- 
+
+ <p> {{character.image}}</p>
  <p> Nombre: {{character.name}}</p>
  <p> Descripción: {{character.description}}</p>
  <p> Clase: {{character.clase}}</p>
  <p> Alineamiento: {{character.alineamiento}}</p>
  <p> Edad: {{character.age}}</p>
  <p> Nivel: {{character.lvl}}</p>
+ <h5>¿Desea eliminarlo?</h5>
  
  <form action="" method="POST">
     {% csrf_token %}

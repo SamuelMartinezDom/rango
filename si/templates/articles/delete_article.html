@@ -6,15 +6,15 @@
  
 {% block content %}
 
-<p> {{object.image}}</p>
-<p> Titulo del Articulo{{object.title}}</p>
-<p> Autor:"{{object.author}}"</p>
-<p> Creado el {{object.date}}</p>
+<p> {{article.image}}</p>
+<p> Titulo del Articulo{{article.title}}</p>
+<p> Autor:"{{article.author}}"</p>
+<p> Creado el {{article.date}}</p>
  <h5>¿Desea eliminarlo?</h5>
  
- <form action={% url 'delete_article' object.id %} method="post">
+ <form action="" method="POST">
     {% csrf_token %}
-       <p><input type="submit" value="Eliminar"></p>
+    <p><input type="submit" value="Eliminar"></p>
  </form>
  
  

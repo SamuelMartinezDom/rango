@@ -35,28 +35,28 @@ def characters(request):
     return render(request, "characters/characters.html", context=context)
 
 
-def delete_character(request, pk):
+def delete_character(request, id):
     """Esta vista retorna un delete del personaje que seleccionaste, 
     ademas requiere estar logueado y ser admin para acceder, sino te manda al registro"""
     if request.user.is_authenticated and request.user.is_superuser:
         if request.method == 'GET':
-            character = Character.objects.get(pk=pk)
+            character = Character.objects.get(id=id)
             context = {'character':character}
             return render(request, 'characters/delete_character.html',context=context)
         elif request.method == 'POST':
-            character = Character.objects.get(pk=pk)
-            Character.delete(character)
+            character = Character.objects.get(id=id)
+            character.delete()
             return redirect(characters)
 
 
-def update_character(request, pk):
+def update_character(request, id):
     """Esta vista retorna un update del personaje que seleccionaste, 
     ademas requiere estar logueado y ser admin para acceder, sino te manda al registro"""
     if request.user.is_authenticated and request.user.is_superuser:
         if request.method == 'POST':
             form = FormularioCharacters(request.POST, request.FILES)
             if form.is_valid():
-                character = Character.objects.get(id=pk)
+                character = Character.objects.get(id=id)
                 character.name = form.cleaned_data['name']
                 character.description = form.cleaned_data['description']
                 character.alineamiento = form.cleaned_data['alineamiento']
@@ -68,7 +68,7 @@ def update_character(request, pk):
 
 
         elif request.method == 'GET':
-            character = Character.objects.get(id=pk)
+            character = Character.objects.get(id=id)
 
             form = FormularioCharacters(initial={
                                         'name':character.name,

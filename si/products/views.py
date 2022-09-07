@@ -43,29 +43,29 @@ def search_products(request):
    return render(request, 'products/search_products.html', context=context)
 
 
-def delete_product(request, pk):
-    """Esta vista retorna un delete del personaje que seleccionaste, 
+def delete_product(request, id):
+    """Esta vista retorna un delete del producto que seleccionaste, 
     ademas requiere estar logueado y ser admin para acceder, sino te manda al registro"""
     if request.user.is_authenticated and request.user.is_superuser:
         if request.method == 'GET':
-            products = Product.objects.get(id=pk)
+            products = Product.objects.get(id=id)
             context = {'products':products}
             return render(request, 'products/delete_product.html',context=context)
         elif request.method == 'POST':
-            products = Product.objects.get(id=pk)
-            products.delete(products)
+            products = Product.objects.get(id=id)
+            products.delete()
             return redirect(list)
 
 
 
-def update_product(request, pk):
+def update_product(request, id):
     """Esta vista retorna un update del personaje que seleccionaste, 
     ademas requiere estar logueado y ser admin para acceder, sino te manda al registro"""
     if request.user.is_authenticated and request.user.is_superuser:
         if request.method == 'POST':
             form = FormularioProducts(request.POST)
             if form.is_valid():
-                products = Product.objects.get(id=pk)
+                products = Product.objects.get(id=id)
                 products.name = form.cleaned_data['name']
                 products.category = form.cleaned_data['category']
                 products.description = form.cleaned_data['description']
@@ -76,7 +76,7 @@ def update_product(request, pk):
 
 
         elif request.method == 'GET':
-            products = Product.objects.get(id=pk)
+            products = Product.objects.get(id=id)
 
             form = FormularioProducts(initial={
                                         'name':products.name,
