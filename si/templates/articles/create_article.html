@@ -10,10 +10,18 @@
   {% csrf_token %}
  
   <table>
-     
-   {{form.as_table}}
-  
+    {{form.as_table}}
   </table>
+
+   <!-- <div>Titulo: {{form.title}}</div>
+   <br>
+   <div>Cuerpo: {{form.body}}</div>
+   <br>
+   <div>Aautor: {{form.author}}</div>
+   <br>
+   <div>{{form.image}}</div> -->
+  
+
   
   <p><input type="submit" value="Enviar"></p>
   

@@ -17,7 +17,8 @@ def create_product(request):
                     category = form.cleaned_data['category'],
                     description = form.cleaned_data['description'],
                     price = form.cleaned_data['price'],
-                    stock = form.cleaned_data['stock'])     
+                    stock = form.cleaned_data['stock'],
+                    image= form.cleaned_data["image"])     
                 return redirect(list)
 
         elif request.method == 'GET':

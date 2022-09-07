@@ -5,6 +5,8 @@ from users.forms import UserRegistrationForm
 
 
 def login_request(request):
+    """Esta vista retorna un login del usuario en caso de que haya completado el formulario
+     con datos validos de un usuario que haya sido registrado previamente"""
     if request.method == "POST":
         form = AuthenticationForm(request=request, data=request.POST)
         if form.is_valid():
@@ -25,6 +27,7 @@ def login_request(request):
 
 
 def register(request):
+    """Esta vista retorna un formulario de creacion de usuario y lo registra en la base de datos"""
     if request.method == "POST":
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
